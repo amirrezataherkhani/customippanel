@@ -72,7 +72,8 @@ class Client:
         })
 
         try:
-            return Message(res.data[0])
+            return Message(next(item for item in res.data if item['message_id'] == message_id))
+            # return Message(res.data[0])
         except:
             raise ValueError("returned response not valid")
 
